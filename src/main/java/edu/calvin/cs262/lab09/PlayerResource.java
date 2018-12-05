@@ -77,11 +77,64 @@ public class PlayerResource {
 		// Below here is where we will create our select statement, lets change the paramters of the function..
     private ResultSet selectLogin(String username, String password, Statement statement) throws SQLException {
         return statement.executeQuery(
-                 String.format("SELECT * FROM person WHERE loginid='%s' AND password='%s'", username,password)
+                 String.format("SELECT * FROM person WHERE loginid='%s' AND password='%s'", username.toLowerCase(),password)
         );
         // Let's go back to our database to learn how the table structure works
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
+    
+        ///////////////////////////////CREATE ACCOUNT //////////////////////////////
+    @ApiMethod(path="player", httpMethod=POST)
+    public Person postPerson(Person player) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DriverManager.getConnection(System.getProperty("cloudsql"));
+            statement = connection.createStatement();
+    	
+	    	  resultSet = statement.executeQuery("SELECT MAX(personid) FROM person");
+	          if (resultSet.next()) {
+	            player.setPersonID(resultSet.getInt(1) + 1);
+	          } else {
+	            throw new RuntimeException("failed to find unique ID...");
+	          }
+			  insertPlayer(player, statement);
+        	 
+
+        } catch (SQLException e) {
+            throw (e);
+        } finally {
+            if (resultSet != null) { resultSet.close(); }
+            if (statement != null) { statement.close(); }
+            if (connection != null) { connection.close(); }
+        }
+        return player;
+	}
+	  /*
+     * This function gets the player with the given id using the given JDBC statement.
+     */
+    private ResultSet selectPlayer(int id, Statement statement) throws SQLException {
+        return statement.executeQuery(
+                String.format("SELECT * FROM person WHERE personid=%d", id)
+        );
+	}
+
+    /*
+     * This function inserts the given player using the given JDBC statement.
+     */
+    private void insertPlayer(Person player, Statement statement) throws SQLException {
+        statement.executeUpdate(
+                String.format("INSERT INTO person (personid,loginid,password) VALUES (%d, '%s', '%s')",
+                        player.getpersonID(),
+                        player.getLoginID().toLowerCase(),
+                        player.getPassword()
+                )
+        );
+	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     
     //////////////// MATCHES /////////////////////////////////////////////////////
     @ApiMethod(path="matches/{id}", httpMethod=GET)
@@ -164,56 +217,7 @@ public class PlayerResource {
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
     
-    ///////////////////////////////CREATE ACCOUNT //////////////////////////////
-    @ApiMethod(path="player", httpMethod=POST)
-    public Person postPerson(Person player) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = DriverManager.getConnection(System.getProperty("cloudsql"));
-            statement = connection.createStatement();
-    	
-	    	  resultSet = statement.executeQuery("SELECT MAX(personid) FROM person");
-	          if (resultSet.next()) {
-	            player.setPersonID(resultSet.getInt(1) + 1);
-	          } else {
-	            throw new RuntimeException("failed to find unique ID...");
-	          }
-			  insertPlayer(player, statement);
-        	 
 
-        } catch (SQLException e) {
-            throw (e);
-        } finally {
-            if (resultSet != null) { resultSet.close(); }
-            if (statement != null) { statement.close(); }
-            if (connection != null) { connection.close(); }
-        }
-        return player;
-	}
-	  /*
-     * This function gets the player with the given id using the given JDBC statement.
-     */
-    private ResultSet selectPlayer(int id, Statement statement) throws SQLException {
-        return statement.executeQuery(
-                String.format("SELECT * FROM person WHERE personid=%d", id)
-        );
-	}
-
-    /*
-     * This function inserts the given player using the given JDBC statement.
-     */
-    private void insertPlayer(Person player, Statement statement) throws SQLException {
-        statement.executeUpdate(
-                String.format("INSERT INTO person (personid,loginid,password) VALUES (%d, '%s', '%s')",
-                        player.getpersonID(),
-                        player.getLoginID(),
-                        player.getPassword()
-                )
-        );
-	}
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////EDIT PROFILE //////////////////////////////
 @ApiMethod(path="player/{loginid}", httpMethod=PUT)
