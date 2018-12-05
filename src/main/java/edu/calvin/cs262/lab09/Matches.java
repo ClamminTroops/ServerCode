@@ -9,22 +9,44 @@ package edu.calvin.cs262.lab09;
 public class Matches {
 
 
-	private int dogID;
+	
+	private String DogName; 
+	private String photo;
+	private String description;
+	
 
 
     public Matches() {
         // The JSON marshaller used by Endpoints requires this default constructor.
     }
-    public Matches(int dogID) {
-		this.dogID=dogID;
-	
+    public Matches(String dName, String photo, String description) {
+		this.DogName=dName;
+		this.photo=photo;
+		this.description=description;	
     }
-		// DOG ID
-    public int getdogID() {
-        return this.dogID;
+    
+
+    // DOG Photo
+    public String getDogName() {
+        return this.DogName;
     }
-    public void setDogID(int id) {
-        this.dogID = id;
+    public void setDogName(String data) {
+        this.DogName = data;
     }
+    
+    public String getProfilePicture() {
+        return this.photo;
+    }
+    public void setProfilePicture(String name) {
+        this.photo = name;
+    }
+    // DOG breed
+    public String getDogBreed() {
+        return this.description;
+    }
+    public void setDogBreed(String breed) {
+        this.description = breed;
+    }
+    
 
 }

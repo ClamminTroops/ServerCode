@@ -15,18 +15,18 @@
   
   <filter>
     <filter-name>endpoints-api-configuration</filter-name>
-    <filter-class origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):1">com.google.api.control.ServiceManagementConfigFilter</filter-class>
+    <filter-class origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):1">com.google.api.control.ServiceManagementConfigFilter</filter-class>
     <async-supported>false</async-supported>
   </filter>
   <filter>
     <filter-name>endpoints-api-controller</filter-name>
-    <filter-class origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):2">com.google.api.control.extensions.appengine.GoogleAppEngineControlFilter</filter-class>
+    <filter-class origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):2">com.google.api.control.extensions.appengine.GoogleAppEngineControlFilter</filter-class>
     <async-supported>false</async-supported>
-    <init-param origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):3">
+    <init-param origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):3">
       <param-name>endpoints.projectId</param-name>
       <param-value>calvincs262-fall2018-teamc</param-value>
     </init-param>
-    <init-param origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):4">
+    <init-param origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):4">
       <param-name>endpoints.serviceName</param-name>
       <param-value>calvincs262-fall2018-teamc.appspot.com</param-value>
     </init-param>
@@ -47,8 +47,8 @@
   
   <servlet>
     <servlet-name>EndpointsServlet</servlet-name>
-    <servlet-class origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):10">com.google.api.server.spi.EndpointsServlet</servlet-class>
-    <init-param origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):11">
+    <servlet-class origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):10">com.google.api.server.spi.EndpointsServlet</servlet-class>
+    <init-param origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):11">
       <param-name>services</param-name>
       <param-value>edu.calvin.cs262.lab09.Hello,edu.calvin.cs262.lab09.PlayerResource</param-value>
     </init-param>
@@ -59,7 +59,7 @@
   
   
   
-  <servlet-mapping origin="WebDescriptor(file:///home/justinbaskaran5/target/appengine-staging/WEB-INF/web.xml):17">
+  <servlet-mapping origin="WebDescriptor(file:///home/justinbaskaran5/ServerCode/target/appengine-staging/WEB-INF/web.xml):17">
     <servlet-name>EndpointsServlet</servlet-name>
     <url-pattern>/*</url-pattern>
   </servlet-mapping>

@@ -9,21 +9,24 @@ package edu.calvin.cs262.lab09;
 public class Person {
 
 	private int personID;
+	private String loginid;
 	private String password;
-	private String profilePhoto;
-	private String name;
-	private String phonenum;
-	private String email;
-	private Double rating;
-	private int numRatings;
+	private String profilePhoto="null";
+	private String name="null";
+	private String phonenum="null";
+	private String email="null";
+	private Double rating=0.0;
+	private int numRatings=0;
+	private String location="null";
 	
 
 
     public Person() {
         // The JSON marshaller used by Endpoints requires this default constructor.
     }
-    public Person(int PersonID,String password, String profilePhoto, String name,String phonenum, String email, Double rating, int numRatings) {
+    public Person(int PersonID,String loginid, String password, String profilePhoto, String name,String phonenum, String email, Double rating, int numRatings, String Location) {
 		this.personID=PersonID;
+		this.loginid = loginid;
 		this.password=password;
 		this.profilePhoto=profilePhoto;
 		this.name=name;
@@ -31,14 +34,23 @@ public class Person {
 		this.email=email;
 		this.rating=rating;
 		this.numRatings=numRatings;
+		this.location = Location;
     }
 		// PersonID
-    public int personID() {
+    public int getpersonID() {
         return this.personID;
     }
     public void setPersonID(int id) {
         this.personID = id;
     }
+    	// LoginID
+    public String getLoginID() {
+        return this.loginid;
+    }
+    public void setLoginID(String id) {
+        this.loginid = id;
+    }
+    
 			// Password 
 	public String getPassword() {
         return this.password;
@@ -89,6 +101,13 @@ public class Person {
         this.numRatings = numRatings;
     }
 
+               	// Location of Ratings  
+	public String getLocation() {
+        return this.location;
+    }
+    public void setLocation(String numRatings) {
+        this.location = numRatings;
+    }
 
 
 

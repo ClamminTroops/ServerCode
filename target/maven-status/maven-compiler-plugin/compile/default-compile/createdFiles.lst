@@ -1,5 +1,8 @@
-edu/calvin/cs262/lab09/Dogs.class
-edu/calvin/cs262/lab09/Hello.class
-edu/calvin/cs262/lab09/PlayerResource.class
 edu/calvin/cs262/lab09/Person.class
 edu/calvin/cs262/lab09/Matches.class
+edu/calvin/cs262/lab09/ListaPet.class
+edu/calvin/cs262/lab09/Dogs.class
+edu/calvin/cs262/lab09/insertMatch.class
+edu/calvin/cs262/lab09/Hello.class
+edu/calvin/cs262/lab09/PlayerResource.class
+edu/calvin/cs262/lab09/AdoptPet.class
